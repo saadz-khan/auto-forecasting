@@ -12,7 +12,9 @@ def preprocess_data(df):
     df = df[['DATE_TIME', 'DC_POWER', 'AC_POWER', 'AMBIENT_TEMPERATURE', 'MODULE_TEMPERATURE', 'IRRADIATION', 'DAILY_YIELD']]
     df['DATE_TIME'] = pd.to_datetime(df['DATE_TIME'], format='%Y-%m-%d %H:%M')
     df.set_index('DATE_TIME', inplace=True)
+    df.dropna(inplace=True)  # Apply dropna() on df instead of df_new
     return df
+
 
 def split_and_normalize_data(df, train_ratio=0.8):
     train_size = int(len(df) * train_ratio)

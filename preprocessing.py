@@ -16,4 +16,4 @@ df_gen['time'] = df_gen['DATE_TIME'].dt.time
 
 final_df = pd.merge(df_gen, sens_1, how='outer', on='DATE_TIME')
 final_df.drop(['SOURCE_KEY'], axis=1, inplace=True)
-final_df.to_csv('./Final_Plant1_Data.csv')
+final_df.to_csv('./final_data.csv')

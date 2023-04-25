@@ -3,6 +3,8 @@ name: Machine Learning Workflow
 on:
   schedule:
     - cron: '0 0 * * 1'
+  workflow_dispatch:
+
 
 jobs:
   train_and_evaluate:

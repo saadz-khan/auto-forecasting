@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 import datetime as dt
 
-gen_1=pd.read_csv('/content/Plant_1_Generation_Data.csv')
+gen_1=pd.read_csv('/content/generation_data.csv')
 gen_1.drop('PLANT_ID',1,inplace=True)
-sens_1= pd.read_csv('/content/Plant_1_Weather_Sensor_Data.csv')
+sens_1= pd.read_csv('/content/weather_data.csv')
 sens_1.drop('PLANT_ID',1,inplace=True)
 
 #format datetime

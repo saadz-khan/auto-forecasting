@@ -8,17 +8,12 @@ sens_1 = pd.read_csv('./weather_data.csv')
 sens_1.drop(columns=['PLANT_ID'], axis=1, inplace=True)
 
 # Format datetime
-gen_1['DATE_TIME'] = pd.to_datetime(gen_1['DATE_TIME'], format='mixed', dayfirst=True)
-sens_1['DATE_TIME'] = pd.to_datetime(sens_1['DATE_TIME'], format='mixed', dayfirst=True)
+gen_1['DATE_TIME'] = pd.to_datetime(gen_1['DATE_TIME'], dayfirst=True)
+sens_1['DATE_TIME'] = pd.to_datetime(sens_1['DATE_TIME'], dayfirst=True)
 
 df_gen = gen_1.groupby('DATE_TIME').sum().reset_index()
 df_gen['time'] = df_gen['DATE_TIME'].dt.time
 
 final_df = pd.merge(df_gen, sens_1, how='outer', on='DATE_TIME')
-# final_df.drop(['SOURCE_KEY'], axis=1, inplace=True)  # Remove this line
+final_df.drop(['SOURCE_KEY'], axis=1, inplace=True)
 final_df.to_csv('./Final_Plant1_Data.csv')
-
-# Data Manipulation and Information
-new_columns = ['DATE_TIME', 'DC_POWER', 'AC_POWER', 'time', 'AMBIENT_TEMPERATURE', 'MODULE_TEMPERATURE', 'IRRADIATION', 'DAILY_YIELD', "TOTAL_YIELD"]
-final_df = final_df.reindex(new_columns, axis=1)
-final_df.dropna(inplace=True)

@@ -29,7 +29,13 @@ jobs:
     - name: Run training and evaluation script
       run: python training_eval.py
 
-  deploy_to_heroku:
+    - name: Run Flask application locally
+      run: |
+        export FLASK_APP=app.py
+        flask run
+
+
+"""  deploy_to_heroku:
     needs: train_and_evaluate
     runs-on: ubuntu-latest
     steps:
@@ -43,4 +49,4 @@ jobs:
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
         heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
         heroku_email: szkhan.bee19@gmail.com
-        usedocker: true
+        usedocker: true"""

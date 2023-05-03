@@ -5,7 +5,7 @@ from firebase_admin import db
 
 
 # Initialize the Firebase app with the credentials and database URL
-firebase_admin.initialize_app(cred, {
+firebase_admin.initialize_app({
     'databaseURL': 'https://forecasting-1609-default-rtdb.asia-southeast1.firebasedatabase.app/'
 })
 

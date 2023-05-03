@@ -29,10 +29,13 @@ jobs:
     - name: Run training and evaluation script
       run: python training_eval.py
 
-    - name: Run Flask application locally
-      run: |
-        export FLASK_APP=app.py
-        flask run
+    - name: Upload model to Firebase
+      run: python firebase_upload.py 
+
+#    - name: Run Flask application locally
+#      run: |
+#        export FLASK_APP=app.py
+#        flask run
 
 
 #deploy_to_heroku:

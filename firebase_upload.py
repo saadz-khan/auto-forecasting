@@ -4,7 +4,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 import json
 
-adict = {
+aDict = {
   "type": "service_account",
   "project_id": "forecasting-1609",
   "private_key_id": "b0d3e147d92e6706e4d980f2877adf089db9bd22",

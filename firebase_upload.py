@@ -10,6 +10,7 @@ class CustomJSONEncoder(json.JSONEncoder):
             return str(obj)
         return super(CustomJSONEncoder, self).default(obj)
 
+
 aDict = {
   "type": "service_account",
   "project_id": "forecasting-1609",
@@ -22,6 +23,19 @@ aDict = {
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-lxedx%40forecasting-1609.iam.gserviceaccount.com"
 }
+
+jsonString = json.dumps(aDict)
+jsonFile = open("./serviceAccountKey.json", "w")
+jsonFile.write(jsonString)
+jsonFile.close()
+
+# Load the JSON file containing the Firebase service account key
+cred = credentials.Certificate('./serviceAccountKey.json')
+
+# Initialize the Firebase app with the credentials and database URL
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://forecasting-1609-default-rtdb.asia-southeast1.firebasedatabase.app/'
+})
 
 df = pd.read_csv('./future_predictions.csv')
 

@@ -127,19 +127,17 @@ def train_and_evaluate():
     future_df_fin = pd.concat([test_df.tail(1), future_df], axis=0)
     another_df = pd.concat ([test_df, future_df], axis=0)
     
-    another_df.to_csv('predictions.csv')
-    single_value = 42
-
-    # Add a new column 'col3' with None values (or any other desired default value)
-    df['Forecast'] = None
-
-    # Set the zero index value of the new column to the single value variable
-    df.loc[0, 'Forecast'] = future_power_generation
-
-    future_df_fin.to_csv('future_predictions.csv')
-
     # Plot the results
     plot_predicted_vs_actual(test_X, test_y, test_pred, df, train_size, window_size, scaler, future_df=future_df_fin)
+
+    # Add a new column 'col3' with None values (or any other desired default value)
+    another_df['Forecast'] = np.NaN
+
+    # Set the zero index value of the new column to the single value variable
+    another_df.loc[0, 'Forecast'] = future_power_generation
+    another_df.to_csv('predictions.csv')
+
+    future_df_fin.to_csv('future_predictions.csv')
 
     return test_df, test_pred, future_df_fin
 

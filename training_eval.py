@@ -124,7 +124,11 @@ def train_and_evaluate():
 
     # Concatenate the two dataframes
     future_df_fin = pd.concat([test_df.tail(1), future_df], axis=0)
+    another_df = pd.concat ([test_df, future_df], axis=0)
+    another_df.to_csv('predictions.csv')
     future_df_fin.to_csv('future_predictions.csv')
+
+
     # Plot the results
     plot_predicted_vs_actual(test_X, test_y, test_pred, df, train_size, window_size, scaler, future_df=future_df_fin)
 

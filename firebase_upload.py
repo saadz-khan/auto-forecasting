@@ -28,8 +28,6 @@ jsonFile.close()
 database_url = 'https://forecasting-1609-default-rtdb.asia-southeast1.firebasedatabase.app'
 
 # Initialize the Firebase app
-
-
 try:
   app = firebase_admin.get_app()
 except ValueError as e:

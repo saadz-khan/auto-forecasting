@@ -12,7 +12,7 @@ def preprocess_data(df):
     df = df[['DATE_TIME', 'DC_POWER', 'AC_POWER', 'AMBIENT_TEMPERATURE', 'MODULE_TEMPERATURE', 'IRRADIATION', 'DAILY_YIELD']]
     df['DATE_TIME'] = pd.to_datetime(df['DATE_TIME'])
     df.set_index('DATE_TIME', inplace=True)
-    df.dropna(inplace=True)  # Apply dropna() on df instead of df_new
+    df.dropna(inplace=True) 
     return df
 
 
@@ -118,16 +118,25 @@ def train_and_evaluate():
 
     # Create a dataframe with the predicted values and the datetime range
     future_df = pd.DataFrame({'DATE_TIME': future_range, 'Predicted': future_pred})
-
+    future_power_generation = future_df['Predicted'].sum()
+    
     # Set DATE_TIME as index
     future_df.set_index('DATE_TIME', inplace=True)
 
     # Concatenate the two dataframes
     future_df_fin = pd.concat([test_df.tail(1), future_df], axis=0)
     another_df = pd.concat ([test_df, future_df], axis=0)
+    
     another_df.to_csv('predictions.csv')
-    future_df_fin.to_csv('future_predictions.csv')
+    single_value = 42
 
+    # Add a new column 'col3' with None values (or any other desired default value)
+    df['Forecast'] = None
+
+    # Set the zero index value of the new column to the single value variable
+    df.loc[0, 'Forecast'] = future_power_generation
+
+    future_df_fin.to_csv('future_predictions.csv')
 
     # Plot the results
     plot_predicted_vs_actual(test_X, test_y, test_pred, df, train_size, window_size, scaler, future_df=future_df_fin)

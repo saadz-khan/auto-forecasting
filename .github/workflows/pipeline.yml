@@ -23,6 +23,9 @@ jobs:
     - name: Parse dataset from firebase
       run: python firebase.py
 
+    - name: Add 4 weeks data to firebase
+      run: python firebase_add.py
+
     - name: Run pre-processing script
       run: python preprocessing.py
 

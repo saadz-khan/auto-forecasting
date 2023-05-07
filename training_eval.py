@@ -70,7 +70,6 @@ def plot_predicted_vs_actual(test_X, test_y, test_pred, df, train_size, window_s
 
 
 def train_and_evaluate():
-    tf.config.run_functions_eagerly(True)
     # Preprocess data
     df = pd.read_csv('final_data.csv')
     df = preprocess_data(df)

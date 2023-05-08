@@ -37,7 +37,8 @@ except ValueError as e:
   })
   
 df = pd.read_csv('predictions.csv')
-df.to_json('predictions.json')
+
+df.to_json('predictions.json', orient='records')
 
 # Replace with the path to your JSON file
 json_file_path = 'predictions.json'

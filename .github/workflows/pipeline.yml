@@ -36,6 +36,8 @@ jobs:
       run: python training_eval.py
 
     - name: Upload model to Firebase
+      env:
+        FORECAST_KEY: ${{ secrets.FORECAST_KEY }} 
       run: python firebase_upload.py 
 
 #    - name: Run Flask application locally

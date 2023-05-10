@@ -24,6 +24,9 @@ jobs:
       run: python firebase.py
 
     - name: Add 4 weeks data to firebase
+      env:
+        WEATHER_KEY: ${{ secrets.WEATHER_KEY }}
+        GENERATION_KEY: ${{ secrets.GENERATION_KEY }}
       run: python firebase_add.py
 
     - name: Run pre-processing script

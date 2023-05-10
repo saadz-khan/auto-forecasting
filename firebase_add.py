@@ -4,8 +4,21 @@ import firebase_admin
 from firebase_admin import credentials, db
 import os
 
-weather_key_path = os.getenv('WEATHER_KEY')
-generation_key_path = os.getenv('GENERATION_KEY')
+# Convert environment variables into json
+cred_data = {
+    "weather_key_path": os.getenv('WEATHER_KEY'),
+    "generation_key_path": os.getenv('GENERATION_KEY'),
+}
+
+with open('creds.json', 'w') as outfile:
+    json.dump(cred_data, outfile)
+
+# Load credentials from json file
+with open('creds.json') as json_file:
+    cred_data = json.load(json_file)
+
+weather_key_path = cred_data['weather_key_path']
+generation_key_path = cred_data['generation_key_path']
 
 weather_data_filepath = './data/4w_weather.json'
 generation_data_filepath = './data/4w_generation.json'

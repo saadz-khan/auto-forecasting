@@ -9,8 +9,8 @@ def create_json(data, filepath):
     return filepath
 
 # Get environment variables as dictionaries
-weather_key =  json.loads(os.environ.get('WEATHER_KEY'))
-generation_key =  json.loads(os.environ.get('GENERATION_KEY'))
+weather_key =  json.loads(os.getenv('WEATHER_KEY'))
+generation_key =  json.loads(os.getenv('GENERATION_KEY'))
 
 # Create JSON files for the keys
 weather_key_path = create_json(weather_key, './weather_key.json')

@@ -2,23 +2,20 @@ import json
 import pandas as pd
 import firebase_admin
 from firebase_admin import credentials, db
+import json
 import os
 
+def create_json(data, filepath):
+    with open(filepath, 'w') as f:
+        json.dump(data, f)
+    return filepath
+
 # Convert environment variables into json
-cred_data = {
-    "weather_key_path": os.getenv('WEATHER_KEY'),
-    "generation_key_path": os.getenv('GENERATION_KEY'),
-}
+weather_key =  os.getenv('WEATHER_KEY'),
+generation_key =  os.getenv('GENERATION_KEY'),
 
-with open('creds.json', 'w') as outfile:
-    json.dump(cred_data, outfile)
-
-# Load credentials from json file
-with open('creds.json') as json_file:
-    cred_data = json.load(json_file)
-
-weather_key_path = cred_data['weather_key_path']
-generation_key_path = cred_data['generation_key_path']
+weather_key_path = create_json(weather_key, 'weather_key.json')
+generation_key_path = create_json(generation_key, 'generation.json')
 
 weather_data_filepath = './data/4w_weather.json'
 generation_data_filepath = './data/4w_generation.json'

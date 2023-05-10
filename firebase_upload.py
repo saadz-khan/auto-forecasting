@@ -15,11 +15,6 @@ forecast_key =  json.loads(os.environ['FORECAST_KEY'])
 # Create JSON files for the keys
 service_account_path = create_json(forecast_key, './serviceAccountKey.json')
 
-jsonString = json.dumps(aDict)
-jsonFile = open(service_account_path, "w")
-jsonFile.write(jsonString)
-jsonFile.close()
-
 # Replace with the URL to your Firebase Realtime Database
 database_url = 'https://forecasting-1609-default-rtdb.asia-southeast1.firebasedatabase.app'
 

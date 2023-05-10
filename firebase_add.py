@@ -2,9 +2,10 @@ import json
 import pandas as pd
 import firebase_admin
 from firebase_admin import credentials, db
+import os
 
-weather_key_path = './keys/weather.json'
-generation_key_path = './keys/generation.json'
+weather_key_path = os.getenv('WEATHER_KEY')
+generation_key_path = os.getenv('GENERATION_KEY')
 
 weather_data_filepath = './data/4w_weather.json'
 generation_data_filepath = './data/4w_generation.json'
